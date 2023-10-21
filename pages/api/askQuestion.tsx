@@ -1,3 +1,4 @@
+import { query } from 'firebase/firestore';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
@@ -5,5 +6,19 @@ type Data = {
 }
 
 export default async function handler( req: NextApiRequest, res: NextApiResponse<Data>){
-    res.status(200).json({ name : 'Jhon Doe'})
+    const { prompt, chatId, model, session } = req.body
+
+    if(!prompt) {
+        res.status(400).json({ answer: "Please provide a Prompt!"})
+        return
+    }
+
+    if(!chatId) {
+        res.status(400).json({ answer: "Please provide a valid Chat ID!"})
+        return
+    }
+
+    //Chat GPT Query
+    const responsse = await query(prompt, chatId, model)
+ 
 }
