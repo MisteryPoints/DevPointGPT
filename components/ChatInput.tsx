@@ -3,8 +3,8 @@ import { db } from '@/firebase'
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useSession } from 'next-auth/react'
-import React, { FormEvent, useState } from 'react'
-import toast from 'react-hot-toast/headless'
+import React, { FormEvent, useState } from 'react' 
+import toast from 'react-hot-toast'
 
 type Props = {
     chatId: string
